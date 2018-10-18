@@ -1,2 +1,19 @@
-%h1{align:"center"}
-  My portfolio
+%h1{align:"center"} My Portfolio
+%h3 Search for stock
+.stock-lookup
+  = form_tag stock_search_path , method: :get, id: "stock-lookup-form" do
+    .form-group.row.no-padding
+      .cal-md-10
+        =text_field_tag :stock, params[:stock], placeholder: "stock ticker symbol", autofocus: true, class: "form-control search-box input-lg"
+      .col-md-2
+        =button_tag(type: :submit, class: "btn btn-lg btn-success") do
+          %i{class: "fa fa-search"} Look up a stock
+
+
+.well.results-block
+  %strong Symbol:
+  = @stock.ticker
+  %strong Name:
+  = @stock.name
+  %strong Price:
+  = @stock.last_price

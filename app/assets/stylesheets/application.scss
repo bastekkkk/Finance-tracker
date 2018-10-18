@@ -16,3 +16,12 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.results-block{
+  display: inline-block;
+}
