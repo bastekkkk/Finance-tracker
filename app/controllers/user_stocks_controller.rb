@@ -19,6 +19,11 @@ def destroy
   flash[:success] = "Stack successfully removed from portfolio"
   redirect_to my_portfolio_path
 
+
+
+
+
+
 end
 
 end
