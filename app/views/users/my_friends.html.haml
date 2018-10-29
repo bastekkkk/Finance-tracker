@@ -1,2 +1,22 @@
-%h1
-my friends
+=# render 'friends/lookup'
+- if @friendships.size > 0
+  %table.table.table-striped
+  %thead
+    %tr
+      %th
+      Name
+      %th
+      email
+  %tboady
+    - @friendships.each do |friend|
+      %th
+        %td
+        = friend.full_name
+        %td
+        = friend.email
+        =link_to "view firend", user_path(friend)
+        =link_to "remove friend", friendship_path(friend), method: :delete, data: {confirm: "are yoy sure?"}, class: "btn btn-ls btn-danger"
+-else
+  .row.col-lg-12
+    %p.lead
+      You don have any friends
