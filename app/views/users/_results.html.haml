@@ -1,19 +1,19 @@
 - if params[:action] == "search"
   .results-block
     = bootstrap_flash
-  -if @stock
-    %strong Symbol
-    = @stock.ticker
-    %strong Name:
-    = @stock.name
-    %strong Price:
-    = @stock.last_price
-    -if current_user.can_add_stock?(@stock.ticker)
-      = link_to "add to my stocks", user_stocks_path(user: current_user, stock_ticker: @stock.ticker), class: "btn btn-xs btn-success", method: :post
-    -else
-      %span.label.label-default
-        Stock cannot be added becouse you have arleady added
-        - if !current_user.under_stock_limit?
-          10 stock
-        - if current_user.stock_already_added?(@stock.ticker)
-          this stock
+-if @stock
+  %strong Symbol
+  = @stock.ticker
+  %strong Name:
+  = @stock.name
+  %strong Price:
+  = @stock.last_price
+  -if current_user.can_add_stock?(@stock.ticker)
+    = link_to "add to my stocks", user_stocks_path(user: current_user, stock_ticker: @stock.ticker), class: "btn btn-xs btn-success", method: :post
+  -else
+    %span.label.label-default
+      Stock cannot be added becouse you have arleady added
+      - if !current_user.under_stock_limit?
+        10 stock
+      - if current_user.stock_already_added?(@stock.ticker)
+        this stock
