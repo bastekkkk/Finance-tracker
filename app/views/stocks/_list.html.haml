@@ -2,22 +2,23 @@
   %thead
     %tr
       %th
-      Name
+        Name
       %th
-      Symbol
+        Symbol
       %th
-      Current Price
+        Current Price
       - if @user.id == current_user.id
         %th
-        Actions
+          Actions
   %tboady
     - @user_stocks.each do |user_stock|
-      %th
+      %tr
         %td
-        = user_stock.name
+          = user_stock.name
         %td
-        = user_stock.ticker
+          = user_stock.ticker
         %td
-        = user_stock.last_price
-        - if @user.id == current_user.id
-          =link_to "Delete this stock", user_stock_path(user_stock), method: :delete, data: {confirm: "are yoy sure?"}, class: "btn btn-ls btn-danger"
+          = user_stock.last_price
+        %td
+          - if @user.id == current_user.id
+            = link_to "Delet this stock", user_stock_path(user_stock), method: :delete, data: {confirm: "are you sure?"}, class: "btn btn-danger btn-xs"

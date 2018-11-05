@@ -1,0 +1,25 @@
+- if params[:action] == "search"
+  .results-block
+    = bootstrap_flash
+
+- if @users
+  #friend-lookup-results.well.results-block.col-md-10
+    %table.search-results-table.col-md-12
+      %tbody
+        -@users.each do |user|
+          %tr
+            %td
+              %strong Name:
+              =user.full_name
+            %td
+              %strong  Email:
+              =user.email
+            %td
+              %strong Profile:
+              =link_to "view Profile", user_path(user), class: "btn btn-xs btn-success"
+              - if current_user.not_freinds_with?(user.id)
+                =link_to "Add my friend" ,add_friend_path(user: current_user, friend: user), class: "btn btn-xs btn-success", method: :post
+              -else
+                %span.label.label-primary
+                  you are already fiernds
+

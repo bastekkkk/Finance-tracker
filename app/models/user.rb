@@ -39,5 +39,37 @@
     under_stock_limit? && !stock_already_added?(ticker_symbol)
   end
 
+  def self.search(param)
+    param.strip!
+    param.downcase!
+    to_send_back = (first_name_mateches(param) + last_name_matches(param)+email_name_matches(param)).uniq
+    return nil unless to_send_back
+    to_send_back
+  end
+
+  def self.first_name_mateches(param)
+    mateches('first_name', param)
+  end
+
+  def self.last_name_matches(param)
+    mateches('last_name', param)
+  end
+
+  def self.email_name_matches(param)
+    mateches('email', param)
+  end
+
+  def self.mateches(field_name, param)
+      User.where("#{field_name} like?", "%#{param}%")
+  end
+
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
+  end
+
+  def not_freinds_with?(friend_id)
+    friendships.where(friend_id: friend_id).count < 1
+  end
+
 
 end

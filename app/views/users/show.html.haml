@@ -1,0 +1,15 @@
+%h3
+User details
+%h5
+  User name:
+  = @user.full_name
+%h5
+  Email:
+  = @user.email
+
+- if @user_stocks.count > 0
+  =render 'stocks/list'
+-else
+  %p.lead
+    This user isn't tracking any stocks
+= link_to "back", my_friends_path, class: "btn btn-cs btn-primary"

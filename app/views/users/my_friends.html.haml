@@ -1,22 +1,24 @@
-=# render 'friends/lookup'
-- if @friendships.size > 0
+= render 'friends/lookup'
+-if @friendships.size > 0
+  %h4 My friends
   %table.table.table-striped
-  %thead
-    %tr
-      %th
-      Name
-      %th
-      email
-  %tboady
-    - @friendships.each do |friend|
-      %th
-        %td
-        = friend.full_name
-        %td
-        = friend.email
-        =link_to "view firend", user_path(friend)
-        =link_to "remove friend", friendship_path(friend), method: :delete, data: {confirm: "are yoy sure?"}, class: "btn btn-ls btn-danger"
+    %thead
+      %tr
+        %th
+          Name
+        %th
+          email
+    %tboady
+      -@friendships.each do |friend|
+        %tr
+          %td
+            = friend.full_name
+          %td
+            = friend.email
+          %td
+            =link_to "view firend", user_path(friend), class: "btn btn-primery"
+            =link_to "remove friend", friendship_path(friend), method: :delete, data: {confirm: "are yoy sure?"}, class: "btn btn-ls btn-danger"
 -else
   .row.col-lg-12
     %p.lead
-      You don have any friends
+    You don have any friends

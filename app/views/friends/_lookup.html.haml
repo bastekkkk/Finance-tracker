@@ -1,0 +1,13 @@
+%h1{align:"center"} My Friend
+%h3 Search Friend's
+.friend-lookup
+  = form_tag search_friends_path ,remote: true, method: :get, id: "friend-lookup-form" do
+    .form-group.row.no-padding
+      .cal-md-10
+        =text_field_tag :search_param, params[:search_param], placeholder: "stock ticker symbol", autofocus: true, class: "form-control search-box input-lg"
+      .col-md-2
+        =button_tag(type: :submit, class: "btn btn-lg btn-success") do
+          %i{class: "fa fa-search"} Look up a friend
+    .well
+    #results
+      = render 'friends/results'
